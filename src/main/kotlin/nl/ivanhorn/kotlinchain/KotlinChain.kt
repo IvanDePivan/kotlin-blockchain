@@ -2,12 +2,30 @@ package nl.ivanhorn.kotlinchain
 
 import com.google.gson.GsonBuilder
 
+val gson = GsonBuilder().setPrettyPrinting().create()
+val blockchain = ArrayList<Block>()
+val chainUtil = ChainUtil()
+var difficulty = 6
+
 fun main(args: Array<String>) {
+    for (i in 1..10) {
+        mineNextBlock("RANDOM DATA :D $difficulty")
+        println("Blockchain is Valid: " + chainUtil.isValid(blockchain))
+    }
+}
 
-    val blockchain = ArrayList<Block>()
-    blockchain += Block("Super real data hash yo!", "0")
-    blockchain += Block("Some more real data", blockchain.last().hash)
-    blockchain += Block("Third block ever", blockchain.last().hash)
+fun mineNextBlock(data: String) {
+    val previousHash: String
+    if (blockchain.size == 0) {
+        previousHash = "0"
+    } else {
+        previousHash = blockchain.last().hash
+    }
+    val block = Block(data, previousHash)
 
-    println(GsonBuilder().setPrettyPrinting().create().toJson(blockchain))
+    println("Mining block...")
+    block.mineBlock(difficulty)
+
+    blockchain += block
+    println(gson.toJson(block))
 }
