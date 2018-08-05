@@ -2,12 +2,13 @@ package nl.ivanhorn.kotlinchain
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import java.util.*
 
 class ChainUtil {
     private val gson:Gson = GsonBuilder().setPrettyPrinting().create()
 
     fun isValid(blockchain: ArrayList<Block>): Boolean {
-        val hashTarget: String = String().padStart(difficulty, '0');
+        val hashTarget: String = String().padStart(difficulty, '0')
         var currentBlock: Block
         var previousBlock: Block
         for (i in 1 until blockchain.size) {

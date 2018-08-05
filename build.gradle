@@ -17,6 +17,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     compile 'com.google.guava:guava:25.1-jre'
     compile 'com.google.code.gson:gson:2.8.5'
+    compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.60'
 }
 compileKotlin {
     kotlinOptions {
