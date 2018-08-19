@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import java.util.*
 
 class ChainUtil {
+
     private val gson:Gson = GsonBuilder().setPrettyPrinting().create()
 
     fun isValid(blockchain: ArrayList<Block>): Boolean {
